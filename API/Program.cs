@@ -1,5 +1,8 @@
 using API.Data;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +17,7 @@ builder.Services.AddDbContext<StoreContext>(opt=>{
 opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 });
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -24,7 +28,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection(); Used for Production
+app.UseCors(opt =>
+{
+
+opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+
+});
+
+
 
 app.UseAuthorization();
 
