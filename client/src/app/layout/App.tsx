@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react"
 import { Product } from "../models/product"
+import Catalog from "../../features/catalog/Catalog";
+import Header from "./Header";
+import { Container, CssBaseline } from "@mui/material";
+
 
 
 function App() {
@@ -30,17 +34,18 @@ function addProduct(){
 
   return (
     
-      <div >
+      <>
+      <CssBaseline />
+     <Header />
+     <Container>
+     { /* Created Catalog child component and passed product and function needed for adding products*/}
+     <Catalog  products={products} addProduct={addProduct} />  
      
-     <h1 >Restore</h1>
-     <ul>
-      {products.map(product =>(
-        <li key={product.id} > {product.name}-{product.price}</li>
+    
 
-      ))}
-     </ul>
-      <button onClick={addProduct}>Add Product</button>
-    </div>
+     </Container>
+   
+    </>
   )
 }
 
