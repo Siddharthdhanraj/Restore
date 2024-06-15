@@ -40,9 +40,6 @@ function addProduct(){
      <Container>
      { /* Created Catalog child component and passed product and function needed for adding products*/}
      <Catalog  products={products} addProduct={addProduct} />  
-     
-    
-
      </Container>
    
     </>

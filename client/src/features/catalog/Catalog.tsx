@@ -1,5 +1,6 @@
-import { List,ListItem, ListItemAvatar,Avatar, ListItemText, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { Product } from "../../app/models/product";
+import ProductList from "./ProductList";
 
 
 // instead of props:any we give type to it so Props type and passing elements
@@ -20,29 +21,11 @@ export default function Catalog({products,addProduct}:Props){
     return(
 
         <>
-
         {/* Added List component from material ui inplace of <ul> */ }
-        <List>
-         
-          {products.map((product: any) => (  
-          
-          <ListItem key={product.id}>
-              <ListItemAvatar>
-                  <Avatar src={product.pictureUrl} />
-              </ListItemAvatar>
-
-              <ListItemText>{product.name}-{product.price}</ListItemText>
-          </ListItem>
-           
-          ))}
-          </List>
-       
+        <ProductList products={products} />
         <Button variant="contained" onClick={addProduct}>Add Product</Button>
-        {/* Added Button style variant conatined*/}
+        
       </>
-      
-    
-    
 
    )
 
