@@ -13,6 +13,7 @@ return(
 
 
    <ListItem key={product.id}>
+   {/* Added Product Card */}
    <ListItemAvatar>
        <Avatar src={product.pictureUrl} />
    </ListItemAvatar>

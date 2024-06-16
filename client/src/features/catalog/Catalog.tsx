@@ -21,7 +21,7 @@ export default function Catalog({products,addProduct}:Props){
     return(
 
         <>
-        {/* Added List component from material ui inplace of <ul> */ }
+       
         <ProductList products={products} />
         <Button variant="contained" onClick={addProduct}>Add Product</Button>
         

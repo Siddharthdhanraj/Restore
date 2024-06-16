@@ -11,7 +11,7 @@ export default function ProductList({products}:Props){
 
     return(
         <List>
-         
+         {/* Added ProductList component */}
          {products.map((product: any) => (  
           <ProductCard  key={product.id} product={product}/>
   
