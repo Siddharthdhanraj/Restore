@@ -1,29 +1,31 @@
-import { Button } from "@mui/material";
 import { Product } from "../../app/models/product";
 import ProductList from "./ProductList";
+import { useState, useEffect } from "react";
 
 
 // instead of props:any we give type to it so Props type and passing elements
-interface Props {
-
-products:Product[];
-
-addProduct:()=> void; // function returns void
-
-}
 
 
-//instead of Props:any use props:Props
-//destructure Catalog({products,addProduct}:Props) so that we dont use props.product.id and use product.id directly
 
-export default function Catalog({products,addProduct}:Props){
+export default function Catalog(){
+  
+  const [products,setProducts]=useState<Product[]>([]);
+
+ 
+useEffect (() =>{
+
+  fetch('https://localhost:5000/api/Products')
+  .then(response =>response.json())
+  .then(data => setProducts(data))
+},[])
+
 
     return(
 
         <>
-       
+    
         <ProductList products={products} />
-        <Button variant="contained" onClick={addProduct}>Add Product</Button>
+      
         
       </>
 
