@@ -3,6 +3,7 @@ import { useState } from "react";
 import Catalog from "../../features/catalog/Catalog";
 import Header from "./Header";
 import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { Outlet } from "react-router-dom";
 
 
 function App() {
@@ -35,7 +36,7 @@ function handleThemeChange()
      <Container>
      
      { /* Created Catalog child component and passed product and function needed for adding products*/}
-     <Catalog />
+     <Outlet/>
      </Container>
    
     </ThemeProvider>
