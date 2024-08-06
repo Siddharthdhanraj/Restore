@@ -1,9 +1,10 @@
 
 import { useState } from "react";
-import Catalog from "../../features/catalog/Catalog";
 import Header from "./Header";
 import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -30,11 +31,11 @@ function handleThemeChange()
 
   return (
   
-      <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <ThemeProvider theme={theme}>
+    <ToastContainer position="bottom-right" hideProgressBar theme="colored" />
+    <CssBaseline />
      <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
      <Container>
-     
      { /* Created Catalog child component and passed product and function needed for adding products*/}
      <Outlet/>
      </Container>

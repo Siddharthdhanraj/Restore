@@ -1,5 +1,5 @@
 using API.Data;
-using Microsoft.AspNetCore.Cors.Infrastructure;
+using API.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -22,6 +22,8 @@ builder.Services.AddCors();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseMiddleware<ExceptionMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -35,12 +37,8 @@ opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
 
 });
 
-
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 
      var scope=app.Services.CreateScope();
      var context=scope.ServiceProvider.GetRequiredService<StoreContext>();
@@ -54,7 +52,5 @@ app.MapControllers();
      catch(Exception ex){
        logger.LogError(ex,"A problem occured during migration"); 
      }
-
-
 
 app.Run();
