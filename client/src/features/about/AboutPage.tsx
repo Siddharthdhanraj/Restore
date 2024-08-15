@@ -24,8 +24,6 @@ export default function AboutPage(){
         <Button variant='contained' onClick={getValidationError}> Test ValidationError</Button>
 
         </ButtonGroup>
-
-        
         { validationErrors.length > 0 && 
         <Alert severity='error'>
          <AlertTitle>Validation Errors</AlertTitle> 
@@ -34,7 +32,6 @@ export default function AboutPage(){
           <ListItem key={error}>
           <ListItemText> {error}</ListItemText>
           </ListItem>
-
           ))}
          </List>  
         </Alert> 

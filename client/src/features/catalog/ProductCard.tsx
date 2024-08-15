@@ -18,17 +18,12 @@ return(
         }
         title={product.name}
         titleTypographyProps={{sx:{fontWeight:'bolc',color:'primary.main'}}}
-
-        
-      
         />
 
-<CardMedia 
+    <CardMedia 
         sx={{height:140,backgroundSize:'contain',bgcolor:'primary.light'}}
         image={product.pictureUrl}
-        title={product.name}
-        
-        />
+        title={product.name}/>
  
     
     <CardContent>
