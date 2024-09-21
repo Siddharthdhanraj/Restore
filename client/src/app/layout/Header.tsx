@@ -1,4 +1,4 @@
-import {  ShoppingCart } from "@mui/icons-material";
+import { ShoppingCart } from "@mui/icons-material";
 import { AppBar, Badge, Box, IconButton, List, ListItem, Switch, Toolbar, Typography } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 
@@ -66,11 +66,11 @@ sx={{color:'inherit',textDecoration:'none'}}
         </ListItem>))} 
         </List>
         <Box display='flex' alignItems='center'>
-        <IconButton component={Link} to='/basket' size='large' edge='start' color='inherit' sx={{mr:2}}>
-        <Badge badgeContent='4' color="secondary">
-        <ShoppingCart/>
-        </Badge>
-        </IconButton>
+            <IconButton component={Link} to='/basket' size='large' edge='start' color='inherit' sx={{mr:2}}>
+                <Badge badgeContent='4' color="secondary">
+                  <ShoppingCart/>
+               </Badge>
+            </IconButton>
         {/* navlink important property too */}
         <List sx={{display:'flex'}}>
             {rightlinks.map(({title,path})=>(<ListItem

@@ -22,8 +22,6 @@ children:[
     {path:'server-error',element:< ServerError />}, {path:'not-found',element:< Notfound />},
     {path:'basket',element:<BasketPage />},
     {path:'*',element:<Navigate replace to='/not-found /'></Navigate>},
-   
-  
 ]
 
 }])

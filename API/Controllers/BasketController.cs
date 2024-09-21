@@ -14,7 +14,7 @@ namespace API.Controllers
 {
     public class BasketController:BaseApiController
     {
-          private readonly StoreContext _context;
+         private readonly StoreContext _context;
         public BasketController(StoreContext context)
         {
 
@@ -47,14 +47,13 @@ namespace API.Controllers
         basket=CreateBasket();
         //get product
         var product=await _context.Products.FindAsync(productId);
-
         if(product==null)
         return NotFound();
+        
         //add item
         basket.AddItem(product,quantity);
         //save changes
         var result=await _context.SaveChangesAsync()>0;
-
         if(result) return  CreatedAtRoute("GetBasket",MapBasketToDto(basket));
 
         return BadRequest(new ProblemDetails{Title="Problem saving item to basket"});
