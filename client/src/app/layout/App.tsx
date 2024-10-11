@@ -17,10 +17,18 @@ function App() {
   useEffect(()=>{
    const buyerId=getCookie('buyerId');
     if(buyerId)
+    {
       agent.Basket.get()
     .then(basket=>setBasket(basket))
     .catch(error=>console.log(error))
     .finally(()=>setLoading(false))
+    }
+    else{
+   setLoading(false);
+
+    }
+
+
   },[setBasket])
 
 const [darkMode,setdarkmode] =useState(false);

@@ -9,8 +9,6 @@ interface StoreContext{
 }
 
 export const StoreContext =createContext<StoreContext|undefined>(undefined);
-
-
 //custom react hook
 // eslint-disable-next-line react-refresh/only-export-components
 export function useStoreContext(){
