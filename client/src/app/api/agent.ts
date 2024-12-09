@@ -55,7 +55,6 @@ const requests={
     post:(url:string,body:object)=>axios.post(url,body).then (responseBody),
     put:(url:string,body:object)=>axios.put(url,body).then (responseBody),
     delete:(url:string)=>axios.delete(url).then (responseBody),
-
 }
 
 //store request for Catalogue
