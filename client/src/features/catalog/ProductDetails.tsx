@@ -1,32 +1,30 @@
 import { Divider, Grid, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from "@mui/material";
 import {  ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../../app/models/product";
-import agent from "../../app/api/agent";
 import Notfound from "../../app/errors/NotFound";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { LoadingButton } from "@mui/lab";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import {  addBasketItemAsync, removeBasketItemAsync } from "../basket/basketSlice";
+import { fetchProductAsync, productsSelectors } from "./catalogSlice";
+
 
 
 export default function ProductDetails(){
     const {basket,status}=useAppSelector(state=>state.basket);
     const dispatch=useAppDispatch();
     const {id}=useParams<{id:string}>();
-    const[product,setProduct]=useState<Product | null>(null);
-    const [loading,setLoading]=useState(true);
+    const product=useAppSelector(state=>productsSelectors.selectById(state,id));
+    const {status:productStatus}=useAppSelector(state=>state.catalog);
     const[quantity,setQuantity]=useState(0);
     const item=basket?.items.find(i=>i.productId===product?.id);
    
   useEffect(()=>{
     if(item)
         setQuantity(item.quantity);
-        agent.Catalog.details(parseInt(id))
-       .then(response=> setProduct(response))
-       .catch(error=>console.log(error))
-       .finally(()=>setLoading(false));
-  },[id,item])
+       if(!product)
+        dispatch(fetchProductAsync(parseInt(id)));
+  },[id,item,dispatch,product])
  
   
    function handleChange(event:ChangeEvent<HTMLInputElement>){
@@ -49,7 +47,7 @@ export default function ProductDetails(){
     }
     
 }
-  if (loading) return <LoadingComponent message='Loading product...'/>
+  if (productStatus.includes('pending')) return <LoadingComponent message='Loading product...'/>
 
   if(!product) return <Notfound/>
     return(
@@ -90,7 +88,7 @@ export default function ProductDetails(){
                 <TextField onChange={handleChange}variant='outlined' type='number' label='Quantity in Cart' fullWidth value={quantity} />
                 </Grid>
                 <Grid item xs={6}>
-                    <LoadingButton disabled={item?.quantity===quantity } loading={status.includes('pendingRemoveItem'+item?.productId)}
+                    <LoadingButton disabled={item?.quantity===quantity } loading={status.includes('pending')}
                     onClick={handleUpdateCart}
                     sx={{height:'55px'}}  color='primary' size='large' variant='contained' fullWidth>
                     {item? 'Update Quantity':'Add to Cart'} 

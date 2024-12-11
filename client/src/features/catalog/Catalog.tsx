@@ -13,14 +13,14 @@ export default function Catalog(){
   
   // const [products,setProducts]=useState<Product[]>([]); 
   const products=useAppSelector(productsSelectors.selectAll);
-  const {productsLoaded}=useAppSelector(state=>state.catalog);
+  const {productsLoaded,status}=useAppSelector(state=>state.catalog);
   const dispatch=useAppDispatch();
 
   
     useEffect (() =>{
-     if(!products)
+     if(!productsLoaded)
       dispatch(fetchProductsAsync())
-    },[dispatch, products, productsLoaded])
+    },[  productsLoaded,dispatch])
 
    if (status.includes('pending')) return <LoadingComponent message='Loading products...' />
 
