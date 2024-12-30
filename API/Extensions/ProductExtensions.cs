@@ -35,7 +35,6 @@ namespace API.Extensions
            
               var brandList=new List<string>();
               var typelist=new List<string>();
-                
               if(!string.IsNullOrEmpty(brands))
               brandList.AddRange(brands.ToLower().Split(",").ToList());
 
@@ -44,8 +43,7 @@ namespace API.Extensions
 
               query = query.Where(p => brandList.Count == 0 || brandList.Contains(p.Brand.ToLower()));
               query=query.Where(p=>typelist.Count == 0 || typelist.Contains(p.Type.ToLower()));
-             
-            
+          
             return query;
 
         }

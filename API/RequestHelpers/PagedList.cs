@@ -26,7 +26,6 @@ namespace API.RequestHelpers
       public static async Task<PagedList<T>> ToPagedList(IQueryable<T> query,int pageNumber,int pageSize){
         var count=await query.CountAsync();
         var items=await query.Skip((pageNumber-1)*pageSize).Take(pageSize).ToListAsync();// Skip suppose 10 records and Take next 10 records 
-
         return new PagedList<T>(items,count,pageNumber,pageSize);
     }
 }

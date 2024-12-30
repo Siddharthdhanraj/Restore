@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.RequestHelpers
 {
-    public class ProdcutParams:PaginationParams
+    public class ProductParams:PaginationParams
     {
       public string OrderBy{get;set;}
 
