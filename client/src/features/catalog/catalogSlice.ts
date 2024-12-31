@@ -105,6 +105,7 @@ resetProductParams:(state)=>{
 }
 
 },
+//Any async action will go into the extraReducers. If not put them in the reducers.
 extraReducers:(
     builder=>{builder.addCase(fetchProductsAsync.pending,(state)=>{
         state.status='pendingFetchProducts'

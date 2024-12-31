@@ -5,7 +5,8 @@ import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { fetchFilters, fetchProductsAsync, productsSelectors } from "./catalogSlice";
 import ProductList from "./ProductList";
 import { Grid } from "@mui/system";
-import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, Pagination, Paper, Radio, RadioGroup, TextField, Typography } from "@mui/material";
+import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, Pagination, Paper, Radio, RadioGroup, Typography } from "@mui/material";
+import ProductSearch from "./ProductSearch";
 
 
 
@@ -21,12 +22,11 @@ const sortOptions=[
 
 export default function Catalog(){
   
-  // const [products,setProducts]=useState<Product[]>([]); 
   const products=useAppSelector(productsSelectors.selectAll);
+  //use useAppSelector() to get the data from the redux store
   const {productsLoaded,status,filtersLoaded,brands,types}=useAppSelector(state=>state.catalog);
   const dispatch=useAppDispatch();
 
-  
   useEffect (() =>{
      if(!productsLoaded)
       dispatch(fetchProductsAsync())
@@ -38,19 +38,13 @@ export default function Catalog(){
      dispatch(fetchFilters())
  },[filtersLoaded, dispatch,])
 
-    
    if (status.includes('pending')) return <LoadingComponent message='Loading products...' />
 
     return(
-
         <Grid container spacing={4}>
          <Grid size={3} >
           <Paper sx={{mb:2}}>
-            <TextField 
-              label='Search products'
-              variant='outlined'
-              fullWidth
-              /> 
+             <ProductSearch/>
             </Paper>
             <Paper sx={{mb:2 ,p:2}}>
               <FormControl component="fieldset">
@@ -86,8 +80,6 @@ export default function Catalog(){
           </Grid>
          
         </Grid>
-    
-
    )
 
 
