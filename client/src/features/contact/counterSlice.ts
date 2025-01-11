@@ -1,14 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-
 export interface CounterState{
-
     data:number,
     title:string
-   
 }    
 const initialState:CounterState={
-
     data:42,
      title:'YARC(yet another redux counter)'
 }
@@ -27,15 +23,7 @@ export const  counterSlice=createSlice({
         }
     }
 
-
-
-
 })
-
-
-
-
-
 
 //Action types redux tookit is creating for us
 export const {increment,decrement}=counterSlice.actions;

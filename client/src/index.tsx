@@ -14,8 +14,6 @@ import { store } from './app/store/configureStore.js';
 
 const root=ReactDOM.createRoot(document.getElementById('root')!);
 
-
-
 root.render(
   //Storeprovider  removed
   <React.StrictMode>

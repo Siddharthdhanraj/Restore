@@ -28,19 +28,17 @@ export const addBasketItemAsync=createAsyncThunk<Basket,{productId:number,quanti
 
 );
 
-
 export const removeBasketItemAsync=createAsyncThunk<void,{productId:number,quantity:number,name?:string}>(
-'basket/removeBasketItemAsync',
-async({productId,quantity},thunkAPI)=>{
-    try{
+    'basket/removeBasketItemAsync',
+    async({productId,quantity},thunkAPI)=>{
+        try{
 
-        return await agent.Basket.removeItem(productId,quantity);
+            return await agent.Basket.removeItem(productId,quantity);
+        }
+        catch(error:any){
+            return thunkAPI.rejectWithValue({error:error.data})
+        }
     }
-    catch(error:any){
-        return thunkAPI.rejectWithValue({error:error.data})
-    }
-
-}
     
 );
 
@@ -50,7 +48,6 @@ export const   basketSlice =createSlice({
     initialState,
     reducers:{
         setBasket:(state,action)=>{
-
             state.basket=action.payload
         },
         
@@ -82,7 +79,6 @@ export const   basketSlice =createSlice({
          state.status='idle'
     });
     builder.addCase(removeBasketItemAsync.rejected,(state,action)=>{
-
         state.status='idle';
         console.log(action.payload);
     });
